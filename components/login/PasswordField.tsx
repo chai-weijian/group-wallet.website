@@ -10,16 +10,21 @@ import {
     InputRightElement,
     useDisclosure,
     useMergeRefs,
-    useColorModeValue as mode,
+    useColorModeValue as mode, FormErrorMessage,
 } from '@chakra-ui/react'
 import * as React from 'react'
 import { HiEye, HiEyeOff } from 'react-icons/hi'
+import {useFormContext} from "react-hook-form";
 
 export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     const { isOpen, onToggle } = useDisclosure()
     const inputRef = React.useRef<HTMLInputElement>(null)
 
-    const mergeRef = useMergeRefs(inputRef, ref)
+    const methods = useFormContext();
+    const {ref: formControlRef, ...register} = methods.register("password", {required: true})
+    const {formState: {errors, dirtyFields}} = methods;
+
+    const mergeRef = useMergeRefs(inputRef, ref, formControlRef)
 
     const onClickReveal = () => {
         onToggle()
@@ -34,7 +39,7 @@ export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>((pro
     }
 
     return (
-        <FormControl id="password">
+        <FormControl id="password" isInvalid={errors.password && dirtyFields.password}>
             <Flex justify="space-between">
                 <FormLabel>Password</FormLabel>
                 <Box as="a" color={mode('blue.600', 'blue.200')} fontWeight="semibold" fontSize="sm">
@@ -53,13 +58,14 @@ export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>((pro
                 </InputRightElement>
                 <Input
                     ref={mergeRef}
-                    name="password"
                     type={isOpen ? 'text' : 'password'}
                     autoComplete="current-password"
                     required
                     {...props}
+                    {...register}
                 />
             </InputGroup>
+            <FormErrorMessage>{errors.password && `Password is required`}</FormErrorMessage>
         </FormControl>
     )
 })
