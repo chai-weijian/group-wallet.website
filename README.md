@@ -16,7 +16,7 @@ This project will be mark as completed only when I stop learning any new technol
 
 ## Technologies
 
-This website is build with some of my favourite technologies:
+This website is build with some of my favourite front-end technologies:
 - [React](https://reactjs.org/)
 - [Next.js](https://nextjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
