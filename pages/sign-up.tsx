@@ -1,22 +1,14 @@
 import { NextPage } from "next";
-import {
-  Box,
-  Button,
-  Heading,
-  SimpleGrid,
-  Text,
-  useColorModeValue,
-  VisuallyHidden,
-} from "@chakra-ui/react";
+import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { Link } from "../components/login/Link";
 import { Card } from "../components/Card";
 import { LoginForm } from "../components/login/LoginForm";
 import * as React from "react";
 import NextLink from "next/link";
 import { DividerWithText } from "../components/login/DividerWithText";
-import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useRouter } from "next/router";
+import { SocialMediaLogin } from "../components/login/SocialMediaLogin";
 
 const SignUp: NextPage = () => {
   const router = useRouter();
@@ -54,20 +46,7 @@ const SignUp: NextPage = () => {
         <Card>
           <LoginForm onSubmit={signUp} submitButtonLabel={`Sign Up`} />
           <DividerWithText mt="6">or continue with</DividerWithText>
-          <SimpleGrid mt="6" columns={3} spacing="3">
-            <Button colorScheme="facebook" disabled variant="outline">
-              <VisuallyHidden>Login with Facebook</VisuallyHidden>
-              <FaFacebook />
-            </Button>
-            <Button color="currentColor" variant="outline">
-              <VisuallyHidden>Login with Google</VisuallyHidden>
-              <FaGoogle />
-            </Button>
-            <Button colorScheme="twitter" disabled variant="outline">
-              <VisuallyHidden>Login with Twitter</VisuallyHidden>
-              <FaTwitter />
-            </Button>
-          </SimpleGrid>
+          <SocialMediaLogin />
         </Card>
       </Box>
     </Box>
