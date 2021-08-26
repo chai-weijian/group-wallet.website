@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Text, UnorderedList, ListItem } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useGroup } from "../../lib/hooks/useGroup";
 import { liftType } from "../../lib/liftType";
@@ -25,6 +25,15 @@ const GroupDetail: NextPage = () => {
         >
           {group?.displayName}
         </Heading>
+      </Box>
+      <Box maxW="2xl" mx="auto">
+        <Text>Owner: {group?.owner}</Text>
+        <Text mt={3}>Members:</Text>
+        <UnorderedList>
+          {group?.members?.map((member) => (
+            <ListItem key={member}>{member}</ListItem>
+          ))}
+        </UnorderedList>
       </Box>
     </Box>
   );

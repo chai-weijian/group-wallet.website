@@ -8,6 +8,7 @@ export type Group = {
   displayName: string;
   owner: string;
   state: GroupState;
+  members: string[];
   currencyCode: CurrencyCode;
   createTime: string;
   aggregateVersion: number;
