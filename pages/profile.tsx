@@ -6,7 +6,7 @@ import {
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
-import { Card } from "../components/login/Card";
+import { Card } from "../components/Card";
 import { HiPencilAlt, HiX } from "react-icons/hi";
 import { CardHeader } from "../components/profile/CardHeader";
 import { CardContent } from "../components/profile/CardContent";

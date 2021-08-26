@@ -11,7 +11,7 @@ import * as React from "react";
 import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 import type { NextPage } from "next";
 import { Link } from "../components/login/Link";
-import { Card } from "../components/login/Card";
+import { Card } from "../components/Card";
 import { LoginForm } from "../components/login/LoginForm";
 import { DividerWithText } from "../components/login/DividerWithText";
 import NextLink from "next/link";
