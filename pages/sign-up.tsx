@@ -55,7 +55,7 @@ const SignUp: NextPage = () => {
           <LoginForm onSubmit={signUp} submitButtonLabel={`Sign Up`} />
           <DividerWithText mt="6">or continue with</DividerWithText>
           <SimpleGrid mt="6" columns={3} spacing="3">
-            <Button disabled color="currentColor" variant="outline">
+            <Button colorScheme="facebook" disabled variant="outline">
               <VisuallyHidden>Login with Facebook</VisuallyHidden>
               <FaFacebook />
             </Button>
@@ -63,7 +63,7 @@ const SignUp: NextPage = () => {
               <VisuallyHidden>Login with Google</VisuallyHidden>
               <FaGoogle />
             </Button>
-            <Button disabled color="currentColor" variant="outline">
+            <Button colorScheme="twitter" disabled variant="outline">
               <VisuallyHidden>Login with Twitter</VisuallyHidden>
               <FaTwitter />
             </Button>
