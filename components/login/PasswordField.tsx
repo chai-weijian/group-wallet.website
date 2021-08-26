@@ -2,26 +2,27 @@ import {
     Box,
     Flex,
     FormControl,
+    FormErrorMessage,
     FormLabel,
     IconButton,
     Input,
     InputGroup,
     InputProps,
     InputRightElement,
+    useColorModeValue as mode,
     useDisclosure,
     useMergeRefs,
-    useColorModeValue as mode, FormErrorMessage,
 } from '@chakra-ui/react'
 import * as React from 'react'
-import { HiEye, HiEyeOff } from 'react-icons/hi'
+import {HiEye, HiEyeOff} from 'react-icons/hi'
 import {useFormContext} from "react-hook-form";
 
 export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-    const { isOpen, onToggle } = useDisclosure()
+    const {isOpen, onToggle} = useDisclosure()
     const inputRef = React.useRef<HTMLInputElement>(null)
 
     const methods = useFormContext();
-    const {ref: formControlRef, ...register} = methods.register("password", {required: true})
+    const {ref: formControlRef, ...register} = methods.register("password", {required: true, minLength: 6})
     const {formState: {errors, dirtyFields}} = methods;
 
     const mergeRef = useMergeRefs(inputRef, ref, formControlRef)
@@ -30,7 +31,7 @@ export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>((pro
         onToggle()
         const input = inputRef.current
         if (input) {
-            input.focus({ preventScroll: true })
+            input.focus({preventScroll: true})
             const length = input.value.length * 2
             requestAnimationFrame(() => {
                 input.setSelectionRange(length, length)
@@ -52,7 +53,7 @@ export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>((pro
                         bg="transparent !important"
                         variant="ghost"
                         aria-label={isOpen ? 'Mask password' : 'Reveal password'}
-                        icon={isOpen ? <HiEyeOff /> : <HiEye />}
+                        icon={isOpen ? <HiEyeOff/> : <HiEye/>}
                         onClick={onClickReveal}
                     />
                 </InputRightElement>
@@ -65,7 +66,8 @@ export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>((pro
                     {...register}
                 />
             </InputGroup>
-            <FormErrorMessage>{errors.password && `Password is required`}</FormErrorMessage>
+            <FormErrorMessage>{errors.password?.type === 'required' && `Password is required`}</FormErrorMessage>
+            <FormErrorMessage>{errors.password?.type === 'minLength' && `Please try a stronger password`}</FormErrorMessage>
         </FormControl>
     )
 })

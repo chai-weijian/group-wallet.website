@@ -1,5 +1,5 @@
 import type {NextPage} from 'next'
-import {Box, Button, Heading} from '@chakra-ui/react'
+import {Box, Button, Heading, Text} from '@chakra-ui/react'
 import Link from 'next/link';
 
 const Home: NextPage = () => {
@@ -12,9 +12,12 @@ const Home: NextPage = () => {
             textAlign="center"
         >
             <Heading as="h2" size="3xl" fontWeight="extrabold" letterSpacing="tight">
-                Ready to try?
+                Group Wallet
             </Heading>
-            <Link href={`/sign-in`} passHref>
+            <Text mt="4" fontSize="lg">
+                Ready to try?
+            </Text>
+            <Link href={`/sign-up`} passHref>
                 <Button mt="8" as="a" size="lg" colorScheme="blue" fontWeight="bold">
                     Sign up
                 </Button>
